@@ -54,8 +54,20 @@ final class DogYearsUITests: XCTestCase {
         
         XCTAssert(app.navigationBars["Menu"].exists)
         XCTAssertFalse(masterNavBar.exists)
-                        
+        
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    func test_calculatorEntry() {
+        
+        app/*@START_MENU_TOKEN@*/.staticTexts["2"]/*[[".buttons[\"2\"].staticTexts[\"2\"]",".staticTexts[\"2\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.buttons["4"].tap()
+        XCTAssertEqual(app.descendants(matching: .staticText)
+            .matching(identifier: "output")
+            .firstMatch
+            .label,
+                       "24"
+        )
     }
     
 }
